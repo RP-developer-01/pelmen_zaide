@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="in/main.css">
+    <title>Форма для пельмен</title>
+</head>
+<body>
+    <div class="wall" id="wall"></div>
+    <h6 class="te">нажми кудась)</h6>
+
+        <div class="card">
+          <div class="card--header">
+            <p class="title">Я хотів тебе добавити у групу в ТГ пробував тебе найти в телеграмі но не найшов( зато зробив цей міні-сайт</p>
+          </div>
+          <form id="card--body">
+            <label>Тут напиши нік свого <b>|ТЕЛЕГРАМА|</b></label>
+            <input type="text" name="name">
+            <label>Тут напиши шо хоч або нічо)</label>
+            <input type="text" name="text">
+          
+            <div class="card--footer">
+              <button type="submit" id="signup" class="btn_sign-up">Відправити</button>
+            </div>
+          </form>
+          <div id="success" style="display: none;margin-top: 20px;"></div>
+
+          <h4>Якшо страшно відправляти форму)) то це мій нік <a href="https://t.me/roki0200">@roki0200</a> можеш скопіювати і найти мене в ТГ в ручну а можеш нажати на нік і перейти прямо в тг і так далі...</h4>
+        </div>
+
+      <script src="in/pel.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+      <script>
+          const TOKEN = "5612535394:AAGuXVTH44AVRcupx65xISiJK4dEf_x-Ak0";
+          const CHAT_ID = "-1001569206177";
+          const URL_API = `https://api.telegram.org/bot${ TOKEN }/sendMessage`;
+          const success = document.getElementById('success');
+          
+          document.getElementById('card--body').addEventListener('submit', function(e) {
+              e.preventDefault();
+              if (this.name.value != '') {
+                let message = `<b>Заявка с сайта!</b>\n`;
+                message += `<b>Отправитель: </b> ${ this.name.value }\n`;
+                message += `<b>текст: </b> ${ this.text.value }`;
+
+                axios.post(URL_API, {
+                  chat_id: CHAT_ID,
+                  parse_mode: 'html',
+                  text: message
+                })
+                .then((res) => {
+                    this.name.value = "";
+                    this.text.value = "";
+                    success.innerHTML = "Повідомлення відправилося вроді) 80% думаю шо всьо добре";
+                    success.style.display = "block";
+                })
+                .catch((err) => {
+                    console.warn(err);
+                })
+                .finally(() => {
+                    console.log('Конец');
+                })
+              } else {
+                  success.innerHTML = "нененене пустоту не нада";
+                    success.style.display = "block";
+              }
+          })
+      </script>
+</body>
+</html>
