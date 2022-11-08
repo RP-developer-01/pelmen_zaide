@@ -124,13 +124,19 @@ input:focus {
     height: 60px;
     border-radius: 50%;
     position: absolute;
-    animation: 1s linear;
+    animation: handShake2 15s linear infinite ;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+    transform: rotate(30deg);
 }
 
 .te {
     z-index: 100;
+}
+
+@keyframes handShake2 {
+    0%,100% { transform: rotateY(180deg) rotate(1500deg); }
+    50% { transform: rotateY(180deg) rotate(-500deg); }
 }

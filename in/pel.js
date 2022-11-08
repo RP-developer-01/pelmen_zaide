@@ -1,8 +1,8 @@
 // config
-const ballSize = 40;
+const ballSize = 50;
 const ballMoveRefreshRate = 30; // ms
 const balls = [];
-// create new ball
+// create new 
 const createBall = (ballSize, x, y) => {
   const positionX = x;
   const positionY = y;
@@ -14,6 +14,7 @@ const createBall = (ballSize, x, y) => {
   ballHtml.style.height = ballSize + "px";
   ballHtml.style.left = positionX + "px";
   ballHtml.style.top = positionY + "px";
+
 
   const signX = Math.floor(Math.random() * 2) === 1 ? 1 : -1;
   const signY = Math.floor(Math.random() * 2) === 1 ? 1 : -1;
